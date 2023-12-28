@@ -9,11 +9,9 @@ const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
 //const { v4: uuidv4 } = require('uuid');
 
 //GET Route to retrieve all notes
-api.get('/notes', (req, res) => {
-    console.info(`${req.method} request received for feedback`);
-  
+/*api.get('/notes', (req, res) => {  
     readFromFile('./db/notes.json').then((data) => res.json(JSON.parse(data)));
-});
+});*/
 
 //POST route for inputting new note
 api.post('/notes', (req, res) => {

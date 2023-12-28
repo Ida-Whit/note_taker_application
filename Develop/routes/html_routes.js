@@ -1,10 +1,13 @@
 //Import required tools
 const html = require('express').Router();
 const path = require('path');
+const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
+
+
 
 //GET function to bring up notes.html file.
 html.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, '../public/notes.html'))
+    res.sendFile(path.join(__dirname, '../public/notes.html'));
 })
 
 
