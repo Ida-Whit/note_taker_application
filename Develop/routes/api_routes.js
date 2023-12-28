@@ -12,7 +12,7 @@ const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
 api.get('/notes', (req, res) => {
     console.info(`${req.method} request received for feedback`);
   
-    readFromFile('../db/notes.json').then((data) => res.json(JSON.parse(data)));
+    readFromFile('./db/notes.json').then((data) => res.json(JSON.parse(data)));
 });
 
 //POST route for inputting new note
@@ -25,7 +25,7 @@ api.post('/notes', (req, res) => {
             title,
             text
     };
-    readAndAppend(newNote, '../db/notes.json');
+    readAndAppend(newNote, './db/notes.json');
 
     const response = {
         status: 'success',
@@ -40,4 +40,4 @@ api.post('/notes', (req, res) => {
 
 
 //Export router
-module.exports = router
+module.exports = api

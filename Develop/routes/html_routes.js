@@ -1,14 +1,16 @@
-const router = require('express').Router();
+//Import required tools
+const html = require('express').Router();
 const path = require('path');
 
-router.get('/notes', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/assets/notes.html'))
+//GET function to bring up notes.html file.
+html.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/notes.html'))
 })
 
 
-//get request to display index.html page
-router.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, './public/assets/index.html'))
+//GET request to bring up index.html file.
+html.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/index.html'))
 });
 
-module.exports = router;
+module.exports = html;
