@@ -15,6 +15,19 @@ api.get('/api/notes', (req, res) => {
     readFromFile('./db/notes.json').then((data) => res.json(JSON.parse(data)));
 });
 
+// GET route for single note
+api.get('/notes/:id', (req, res) => {
+    const noteId = req.params.id;
+    readFromFile('./db/notes.json')
+        .then((data) => JSON.parse(data))
+        .then((json) => {
+            const result = json.filter((note) => note.noteId === noteId);
+            return result.length > 0
+            ? res.json(result)
+            : res.json('No note found with that ID');
+        });
+});
+
 //POST route for inputting new note
 api.post('/api/notes', (req, res) => {
     console.info(`${req.method} request received to submit feedback`);
@@ -38,6 +51,24 @@ api.post('/api/notes', (req, res) => {
 } else {
     res.json('Error in posting note');
 };
+});
+
+//DELETE route to delete specific notes
+api.delete('/notes/:id', (req, res) => {
+    const noteId = req.params.id;
+
+    readFromFile('./db/notes.json')
+    .then((data) => JSON.parse(data))
+    .then((json) => {
+        const results = json.filter((note) => note.id !== noteId);
+        writeToFile('./db/notes.json', results);
+    }) .then (() => {
+        res.json('Note successfully deleted');
+    })
+    .catch((err) => {
+        console.error(err);
+        res.status(500).json({ error: 'Failed to delete note' });
+    });
 });
 
 
