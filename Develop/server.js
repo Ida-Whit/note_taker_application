@@ -5,8 +5,8 @@ const PORT = process.env.PORT || 3001;
 const path = require('path');
 
 //Import routes
-const api = require('./Develop/routes/api_routes.js');
-const html = require('./Develop/routes/html_routes.js');
+const api = require('./routes/api_routes.js');
+const html = require('./routes/html_routes.js');
 
 
 //Create static route for public folder.
